@@ -14,21 +14,36 @@
     </head>
     <style>
 
-        .row{
+        body{
+            background-color: #4773b3;
+        }
+
+        #mainchat{
             margin: auto;
             display: block;
             width: 50%;
-            border: 1px solid #acacac;
+            border: 4px solid #f9f293;
             height: 400px;
+            background-color: #ffffff;
         }
 
         #segunda_div{
+            margin: auto;
+            display: block;
+            width: 50%;
+            border: 0px solid #acacac;
             height: 100px;
-            background-color: beige;
+            background-color: #f9ecca;
         }
+
+
 
         #segunda_div input{
             width: 400px;
+        }
+
+        #segunda_div button{
+            margin-left: 40px;
         }
 
         #div_btn button{
@@ -39,9 +54,44 @@
             display: block;
         }
 
+        .btn{
+            border-radius: 30px;
+            border: none;
+            background-color: #ccddf2;
+            color: black;
+        }
+        .btn:hover{
+            background-color: #9eb3cc;
+            border: none;
+        }
 
+        #btnIntro{
+            background-color: #ecccca;
+            border: none;
+        }
+        #btnIntro:hover{
+            background-color: #c49f9d;
+            border: none;
+        }
+
+        #btnSpeak{
+            background-color: #92c1fc;
+            border: none;
+        }
+        #btnSpeak:hover{
+            background-color: #6c94c6;
+            border: none;
+        }
+
+        #img_anati{
+            width: 40%;
+            position: absolute;
+            right: 0;
+            top: 20px;
+        }
     </style>
     <body>
+
         <div id="container">
             <div class="alert alert-success" role="alert">
                 <h4 class="alert-heading">Bem-vindo(a)!</h4>
@@ -51,13 +101,10 @@
             </div>
         </div>
         <div id="container">
-            <div class="row justify-content-md-center">
+            <div id="mainchat" class="row justify-content-md-center">
                 <div id="div_btn" class="col align-items">
                     <div class=".col-sm-5 .col-md-6">            
                         <button type="button" class="btn btn-danger" id='btnIntro'>Ajuda</button>
-                    </div>
-                    <div class=".col-sm-5 .col-md-6">            
-                        <button type="button" class="btn btn-info" id='btnCriador'>Quem te criou?</button>
                     </div>
                     <div class=".col-sm-5 .col-md-6">            
                         <button type="button" class="btn btn-info" id='btnPierre'>Quem é o Pierre?</button>
@@ -71,24 +118,31 @@
                     <div class=".col-sm-5 .col-md-6">            
                         <button type="button" class="btn btn-info" id='btnPiada'>Conta-me uma piada</button>
                     </div>
+                    <div class=".col-sm-5 .col-md-6">            
+                        <img id="img_anati" src="imagens/anati.gif" />
+                    </div>
                 </div>
+
             </div>
+            <div class="row">
+                <div class="col">
+                </div></div>
             <div id="segunda_div" class="row align-items-end">
 
+
                 <div class="col">
-                    <p>Escreva <b>ola</b></p>
-                    <input id='txtInput'  /> <br><br>  
+                    <p>Pode escrever <b>Olá</b></p>
+                    <input id='txtInput'  />
+                    <button type="button" class="btn btn-warning"  id='btnSpeak'>Enviar</button>
+
                 </div>
-                <div class=".col-sm-5 .offset-sm-2 .col-md-6 .offset-md-0">
-                    <button type="button" class="btn btn-warning"  id='btnSpeak'>Enviar!</button>
-                </div>
+
+
+
 
             </div>
         </div>
         <select id='voiceList' style="display:none;"></select> <br><br>
-
-
-
 
 
         <script>
@@ -96,6 +150,9 @@
             var voiceList = document.querySelector('#voiceList');
             var btnSpeak = document.querySelector('#btnSpeak');
             var btnIntro = document.querySelector('#btnIntro');
+            var btnPierre = document.querySelector('#btnPierre');
+            var btnCriatividade = document.querySelector('#btnCriatividade');
+            var btnMachineCriatives = document.querySelector('#btnMachineCriatives');
             var btnPiada = document.querySelector('#btnPiada');
             var synth = window.speechSynthesis;
             var voices = [];
@@ -105,21 +162,35 @@
                 speechSynthesis.onvoiceschanged = PopulateVoices;
             }
 
-//             setTimeout(function(){ 
-//             
-//             document.getElementById('container').innerHTML="";
-//             
-//             }, 10000);
-            
-             btnIntro.addEventListener('click', ()=> {
+            //             setTimeout(function(){ 
+            //             
+            //             document.getElementById('container').innerHTML="";
+            //             
+            //             }, 10000);
+
+            btnIntro.addEventListener('click', ()=> {
                 document.getElementById('txtInput').value = "ola";
-                var toSpeak = new SpeechSynthesisUtterance("Bem-vinda professora! O meu nome é Anati e sou a personagem do livro que o Diogo Carvalho criou. Estou aqui para a ajudar. Consegue ver alguns botões que apareceram agora? Pode interargir com eles para saber mais informações.");
-                     setTimeout(function(){ 
-             
-                    document.getElementById('div_btn').style.display="block";
-             
-             }, 5000);
-                    
+                var toSpeak = new SpeechSynthesisUtterance("Bem-vinda professora! O meu nome é Anati e sou a personagem do livro que o Diogo Carvalho criou. Estou aqui para a ajudar. Consegue ver os botões que se encontram na conversa? Pode interargir com eles para saber mais informações.");
+
+
+
+                var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                voices.forEach((voice)=>{
+                    if(voice.name === selectedVoiceName){
+                        toSpeak.voice = voice;
+                    }
+                });
+                synth.speak(toSpeak);
+                document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 15000);
+
+            });
+            
+             btnPierre.addEventListener('click', ()=> {
+                document.getElementById('txtInput').value = "Pierre";
+                 var toSpeak = new SpeechSynthesisUtterance("O Pierre é o Diogo Carvalho. Esta história baseou-se em factos verídicos da vida do Diogo. Ele considera que a criatividade estará sempre presente na sua vida profissional, visto que o seu trabalho o requer. Como ele anseia trabalhar em áreas como o design e criar produtos torna-se muito dificil a criatividade não o perseguir. Eu concordo que ele seja um humano muito criativo como toda a sua espécie.");
 
                     var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
                     voices.forEach((voice)=>{
@@ -128,30 +199,81 @@
                         }
                     });
                     synth.speak(toSpeak);
+
+                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 10000);
+
+            });
+            
+            btnCriatividade.addEventListener('click', ()=> {
+                document.getElementById('txtInput').value = "O que é a criatividade?";
+                    var toSpeak = new SpeechSynthesisUtterance("Eu não lhe consigo responder a isso, porque não estou treinada o suficiente para lhe dar uma boa definição, vou demorar 500 anos para aprender bem como o cérebro humano funciona e só depois ganhar toda a capacidade de gerar boas ideias. Por enquanto só lhe consigo contar piadas.");
+
+
+                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                    voices.forEach((voice)=>{
+                        if(voice.name === selectedVoiceName){
+                            toSpeak.voice = voice;
+                        }
+                    });
+                    synth.speak(toSpeak);
+
+                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 20000);
+
+            });
+            
+            btnMachineCriatives.addEventListener('click', ()=> {
+                document.getElementById('txtInput').value = "As máquinas são criativas?";
+                    var toSpeak = new SpeechSynthesisUtterance("Neste momento devemos de ver as máquinas como ajuda na execução de processos mais demorados. Não estamos muito perto de sermos criativas, mas não estamos muito longe. Mas acredito que possamos ajudar os humanos a serem mais eficazes nas suas tarefas. Como por exemplo, programar sites, fabricar produtos, construir carros, entre outros.");
+
+
+                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                    voices.forEach((voice)=>{
+                        if(voice.name === selectedVoiceName){
+                            toSpeak.voice = voice;
+                        }
+                    });
+                    synth.speak(toSpeak);
+
+                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 20000);
+
             });
 
-            
-            
+
+
             btnPiada.addEventListener('click', ()=> {
                 document.getElementById('txtInput').value = "piada";
-                    
-                    let numeroRandom = getRandomIntInclusive(1,3);
-                    console.log(numeroRandom)
-                    if(numeroRandom == 1){
-                        var toSpeak = new SpeechSynthesisUtterance("Qual é o rei dos queijos?         O requeijão!");
-                    }else if(numeroRandom == 2){
-                        var toSpeak = new SpeechSynthesisUtterance("Qual foi o peixe que caiu do 10º andar?    o AAAAAA    - TUM");
-                    }else if(numeroRandom == 3){
-                        var toSpeak = new SpeechSynthesisUtterance("O que diz um boneco de neve a outro?  Cheira-te a cenouras?");
-                    }
 
-                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
-                    voices.forEach((voice)=>{
-                        if(voice.name === selectedVoiceName){
-                            toSpeak.voice = voice;
-                        }
-                    });
-                    synth.speak(toSpeak);
+                let numeroRandom = getRandomIntInclusive(1,3);
+                console.log(numeroRandom)
+                if(numeroRandom == 1){
+                    var toSpeak = new SpeechSynthesisUtterance("Qual é o rei dos queijos?         O requeijão!");
+                }else if(numeroRandom == 2){
+                    var toSpeak = new SpeechSynthesisUtterance("Qual foi o peixe que caiu do 10º andar?    o AAAAAA    - TUM");
+                }else if(numeroRandom == 3){
+                    var toSpeak = new SpeechSynthesisUtterance("O que diz um boneco de neve a outro?  Cheira-te a cenouras?");
+                }
+
+                var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                voices.forEach((voice)=>{
+                    if(voice.name === selectedVoiceName){
+                        toSpeak.voice = voice;
+                    }
+                });
+                synth.speak(toSpeak);
+                 document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 5000);
+
             });
 
 
@@ -161,16 +283,16 @@
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
 
-            
+
             btnSpeak.addEventListener('click', ()=> {
                 if(txtInput.value == "olá" || txtInput.value == "ola" || txtInput.value == "Ola" || txtInput.value == "Olá" ){
-                    var toSpeak = new SpeechSynthesisUtterance("Bem-vinda professora! O meu nome é Anati e sou a personagem do livro que o Diogo Carvalho criou. Estou aqui para a ajudar. Consegue ver alguns botões que apareceram agora? Pode interargir com eles para saber mais informações.");
-                     setTimeout(function(){ 
-             
-                    document.getElementById('div_btn').style.display="block";
-             
-             }, 5000);
-                    
+                    var toSpeak = new SpeechSynthesisUtterance("Bem-vinda professora! O meu nome é Anati e sou a personagem do livro que o Diogo Carvalho criou. Estou aqui para a ajudar.  Consegue ver os botões que se encontram na conversa? Pode interargir com eles para saber mais informações.");
+                    setTimeout(function(){ 
+
+                        document.getElementById('div_btn').style.display="block";
+
+                    }, 5000);
+
 
                     var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
                     voices.forEach((voice)=>{
@@ -179,14 +301,20 @@
                         }
                     });
                     synth.speak(toSpeak);
-                }else if(txtInput.value == "piada" || txtInput.value == "Piada"){
-                       setTimeout(function(){ 
-             
-                    document.getElementById('div_btn').style.display="block";
-             
-             }, 5000);
-                    document.getElementById('txtInput').value = "piada";
                     
+                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 15000);
+                    
+                }else if(txtInput.value == "piada" || txtInput.value == "Piada"){
+                    setTimeout(function(){ 
+
+                        document.getElementById('div_btn').style.display="block";
+
+                    }, 5000);
+                    document.getElementById('txtInput').value = "piada";
+
                     let numeroRandom = getRandomIntInclusive(1,3);
                     console.log(numeroRandom)
                     if(numeroRandom == 1){
@@ -204,6 +332,64 @@
                         }
                     });
                     synth.speak(toSpeak);
+                    
+                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 5000);
+                    
+                }else if(txtInput.value == "quem é o Pierre?" || txtInput.value == "Pierre" || txtInput.value == "Quem é o Pierre?" || txtInput.value == "quem é o Pierre" || txtInput.value == "Pierre" || txtInput.value == "Quem é o Pierre"){
+
+                     var toSpeak = new SpeechSynthesisUtterance("O Pierre é o Diogo Carvalho. Esta história baseou-se em factos verídicos da vida do Diogo. Ele considera que a criatividade estará sempre presente na sua vida profissional, visto que o seu trabalho o requer. Como ele anseia trabalhar em áreas como o design e criar produtos torna-se muito dificil a criatividade não o perseguir. Eu concordo que ele seja um humano muito criativo como toda a sua espécie.");
+
+                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                    voices.forEach((voice)=>{
+                        if(voice.name === selectedVoiceName){
+                            toSpeak.voice = voice;
+                        }
+                    });
+                    synth.speak(toSpeak);
+
+                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 10000);
+
+
+                }else if(txtInput.value == "O que é a criatividade?" || txtInput.value == "criatividade" 
+                         || txtInput.value == "o que é a criatividade?"){
+                         
+                    var toSpeak = new SpeechSynthesisUtterance("Eu não lhe consigo responder a isso, porque não estou treinada o suficiente para lhe dar uma boa definição, vou demorar 500 anos para aprender bem como o cérebro humano funciona e só depois ganhar toda a capacidade de gerar boas ideias. Por enquanto só lhe consigo contar piadas.");
+
+                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                    voices.forEach((voice)=>{
+                        if(voice.name === selectedVoiceName){
+                            toSpeak.voice = voice;
+                        }
+                    });
+                    synth.speak(toSpeak);
+
+                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 20000);
+                }else if(txtInput.value == "As máquinas são criativas?" || txtInput.value == "máquinas" 
+                         || txtInput.value == "as máquinas são criativas?"){
+                    var toSpeak = new SpeechSynthesisUtterance("Neste momento devemos de ver as máquinas como ajuda na execução de processos mais demorados. Não estamos muito perto de sermos criativas, mas não estamos muito longe. Mas acredito que possamos ajudar os humanos a serem mais eficazes nas suas tarefas. Como por exemplo, programar sites, fabricar produtos, construir carros, entre outros.");
+
+
+                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                    voices.forEach((voice)=>{
+                        if(voice.name === selectedVoiceName){
+                            toSpeak.voice = voice;
+                        }
+                    });
+                    synth.speak(toSpeak);
+
+                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                setTimeout(function(){ 
+                    document.getElementById('img_anati').src="imagens/anati.gif";
+                }, 20000);
                 }
             });
 

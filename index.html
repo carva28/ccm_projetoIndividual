@@ -89,11 +89,23 @@
             right: 0;
             top: 20px;
         }
+
+        #headingPage{
+            background-color: #f9f293;
+            color:#4773b3;
+            border: none;
+            border-radius: 0;
+        }
+
+        #hr{
+            background-color: #4773b3;
+            color: #4773b3;
+        }
     </style>
     <body>
 
         <div id="container">
-            <div class="alert alert-success" role="alert">
+            <div id="headingPage" class="alert alert-success" role="alert">
                 <h4 class="alert-heading">Bem-vindo(a)!</h4>
                 <p>Por favor ative o som.</p>
                 <hr>
@@ -110,7 +122,7 @@
                         <button type="button" class="btn btn-info" id='btnPierre'>Quem é o Pierre?</button>
                     </div>
                     <div class=".col-sm-5 .col-md-6">            
-                        <button type="button" class="btn btn-info" id='btnCriatividade'>O que sabes tu de criatividade?</button>
+                        <button type="button" class="btn btn-info" id='btnCriatividade'>O que sabes tu sobre criatividade?</button>
                     </div>
                     <div class=".col-sm-5 .col-md-6">            
                         <button type="button" class="btn btn-info" id='btnMachineCriatives'>Achas que as maquinas são criativas?</button>
@@ -187,60 +199,60 @@
                 }, 15000);
 
             });
-            
-             btnPierre.addEventListener('click', ()=> {
+
+            btnPierre.addEventListener('click', ()=> {
                 document.getElementById('txtInput').value = "Pierre";
-                 var toSpeak = new SpeechSynthesisUtterance("O Pierre é o Diogo Carvalho. Esta história baseou-se em factos verídicos da vida do Diogo. Ele considera que a criatividade estará sempre presente na sua vida profissional, visto que o seu trabalho o requer. Como ele anseia trabalhar em áreas como o design e criar produtos torna-se muito dificil a criatividade não o perseguir. Eu concordo que ele seja um humano muito criativo como toda a sua espécie.");
+                var toSpeak = new SpeechSynthesisUtterance("O Pierre é o Diogo Carvalho. Esta história baseia-se em factos verídicos da vida do Diogo. Ele considera que a criatividade estará sempre presente na sua vida profissional, visto que o seu trabalho o requer. Como ele anseia trabalhar em áreas como o design e criar produtos tecnológicos torna-se muito dificil a criatividade não o perseguir. Eu concordo que ele seja um humano muito criativo como toda a sua espécie.");
 
-                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
-                    voices.forEach((voice)=>{
-                        if(voice.name === selectedVoiceName){
-                            toSpeak.voice = voice;
-                        }
-                    });
-                    synth.speak(toSpeak);
+                var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                voices.forEach((voice)=>{
+                    if(voice.name === selectedVoiceName){
+                        toSpeak.voice = voice;
+                    }
+                });
+                synth.speak(toSpeak);
 
-                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
                 setTimeout(function(){ 
                     document.getElementById('img_anati').src="imagens/anati.gif";
                 }, 10000);
 
             });
-            
+
             btnCriatividade.addEventListener('click', ()=> {
                 document.getElementById('txtInput').value = "O que é a criatividade?";
-                    var toSpeak = new SpeechSynthesisUtterance("Eu não lhe consigo responder a isso, porque não estou treinada o suficiente para lhe dar uma boa definição, vou demorar 500 anos para aprender bem como o cérebro humano funciona e só depois ganhar toda a capacidade de gerar boas ideias. Por enquanto só lhe consigo contar piadas.");
+                var toSpeak = new SpeechSynthesisUtterance("Eu não lhe consigo responder a isso, porque não estou treinada o suficiente para lhe dar uma boa definição, vou demorar 500 anos para aprender bem como o cérebro humano funciona e só depois ganhar toda a capacidade de gerar boas ideias. Por enquanto só lhe consigo contar piadas.");
 
 
-                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
-                    voices.forEach((voice)=>{
-                        if(voice.name === selectedVoiceName){
-                            toSpeak.voice = voice;
-                        }
-                    });
-                    synth.speak(toSpeak);
+                var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                voices.forEach((voice)=>{
+                    if(voice.name === selectedVoiceName){
+                        toSpeak.voice = voice;
+                    }
+                });
+                synth.speak(toSpeak);
 
-                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
                 setTimeout(function(){ 
                     document.getElementById('img_anati').src="imagens/anati.gif";
                 }, 20000);
 
             });
-            
+
             btnMachineCriatives.addEventListener('click', ()=> {
                 document.getElementById('txtInput').value = "As máquinas são criativas?";
-                    var toSpeak = new SpeechSynthesisUtterance("Neste momento devemos de ver as máquinas como ajuda na execução de processos mais demorados. Não estamos muito perto de sermos criativas, mas não estamos muito longe. Mas acredito que possamos ajudar os humanos a serem mais eficazes nas suas tarefas. Como por exemplo, programar sites, fabricar produtos, construir carros, entre outros.");
+                var toSpeak = new SpeechSynthesisUtterance("Neste momento devemos de ver as máquinas como ajuda na execução de processos mais demorados. Não estamos muito perto de sermos criativas, mas não estamos muito longe. Mas acredito que possamos ajudar os humanos a serem mais eficazes nas suas tarefas. Como por exemplo, programar sites, fabricar produtos, construir carros, entre outros.");
 
 
-                    var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
-                    voices.forEach((voice)=>{
-                        if(voice.name === selectedVoiceName){
-                            toSpeak.voice = voice;
-                        }
-                    });
-                    synth.speak(toSpeak);
+                var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                voices.forEach((voice)=>{
+                    if(voice.name === selectedVoiceName){
+                        toSpeak.voice = voice;
+                    }
+                });
+                synth.speak(toSpeak);
 
-                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
                 setTimeout(function(){ 
                     document.getElementById('img_anati').src="imagens/anati.gif";
                 }, 20000);
@@ -269,7 +281,7 @@
                     }
                 });
                 synth.speak(toSpeak);
-                 document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
                 setTimeout(function(){ 
                     document.getElementById('img_anati').src="imagens/anati.gif";
                 }, 5000);
@@ -278,11 +290,23 @@
 
 
             function getRandomIntInclusive(min, max) {
+                if(atualNumber == 1){
+                    min = Math.ceil(2);
+                    max = Math.floor(3);
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                }else if(atualNumber == 2){
+                    return 3;
+                }else if(atualNumber == 3){
+                    min = Math.ceil(1);
+                    max = Math.floor(2);
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                }
                 min = Math.ceil(min);
                 max = Math.floor(max);
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
 
+            var atualNumber;
 
             btnSpeak.addEventListener('click', ()=> {
                 if(txtInput.value == "olá" || txtInput.value == "ola" || txtInput.value == "Ola" || txtInput.value == "Olá" ){
@@ -301,12 +325,12 @@
                         }
                     });
                     synth.speak(toSpeak);
-                    
-                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
-                setTimeout(function(){ 
-                    document.getElementById('img_anati').src="imagens/anati.gif";
-                }, 15000);
-                    
+
+                    document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                    setTimeout(function(){ 
+                        document.getElementById('img_anati').src="imagens/anati.gif";
+                    }, 15000);
+
                 }else if(txtInput.value == "piada" || txtInput.value == "Piada"){
                     setTimeout(function(){ 
 
@@ -317,11 +341,15 @@
 
                     let numeroRandom = getRandomIntInclusive(1,3);
                     console.log(numeroRandom)
+
                     if(numeroRandom == 1){
+                        atualNumber=1;
                         var toSpeak = new SpeechSynthesisUtterance("Qual é o rei dos queijos?         O requeijão!");
                     }else if(numeroRandom == 2){
+                        atualNumber=2;
                         var toSpeak = new SpeechSynthesisUtterance("Qual foi o peixe que caiu do 10º andar?    o AAAAAA    - TUM");
                     }else if(numeroRandom == 3){
+                        atualNumber=3;
                         var toSpeak = new SpeechSynthesisUtterance("O que diz um boneco de neve a outro?  Cheira-te a cenouras?");
                     }
 
@@ -332,15 +360,15 @@
                         }
                     });
                     synth.speak(toSpeak);
-                    
-                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
-                setTimeout(function(){ 
-                    document.getElementById('img_anati').src="imagens/anati.gif";
-                }, 5000);
-                    
+
+                    document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                    setTimeout(function(){ 
+                        document.getElementById('img_anati').src="imagens/anati.gif";
+                    }, 5000);
+
                 }else if(txtInput.value == "quem é o Pierre?" || txtInput.value == "Pierre" || txtInput.value == "Quem é o Pierre?" || txtInput.value == "quem é o Pierre" || txtInput.value == "Pierre" || txtInput.value == "Quem é o Pierre"){
 
-                     var toSpeak = new SpeechSynthesisUtterance("O Pierre é o Diogo Carvalho. Esta história baseou-se em factos verídicos da vida do Diogo. Ele considera que a criatividade estará sempre presente na sua vida profissional, visto que o seu trabalho o requer. Como ele anseia trabalhar em áreas como o design e criar produtos torna-se muito dificil a criatividade não o perseguir. Eu concordo que ele seja um humano muito criativo como toda a sua espécie.");
+                    var toSpeak = new SpeechSynthesisUtterance("O Pierre é o Diogo Carvalho. Esta história baseia-se em factos verídicos da vida do Diogo. Ele considera que a criatividade estará sempre presente na sua vida profissional, visto que o seu trabalho o requer. Como ele anseia trabalhar em áreas como o design e criar produtos tecnológicos torna-se muito dificil a criatividade não o perseguir. Eu concordo que ele seja um humano muito criativo como toda a sua espécie.");
 
                     var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
                     voices.forEach((voice)=>{
@@ -350,15 +378,15 @@
                     });
                     synth.speak(toSpeak);
 
-                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
-                setTimeout(function(){ 
-                    document.getElementById('img_anati').src="imagens/anati.gif";
-                }, 10000);
+                    document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                    setTimeout(function(){ 
+                        document.getElementById('img_anati').src="imagens/anati.gif";
+                    }, 10000);
 
 
                 }else if(txtInput.value == "O que é a criatividade?" || txtInput.value == "criatividade" 
                          || txtInput.value == "o que é a criatividade?"){
-                         
+
                     var toSpeak = new SpeechSynthesisUtterance("Eu não lhe consigo responder a isso, porque não estou treinada o suficiente para lhe dar uma boa definição, vou demorar 500 anos para aprender bem como o cérebro humano funciona e só depois ganhar toda a capacidade de gerar boas ideias. Por enquanto só lhe consigo contar piadas.");
 
                     var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
@@ -369,10 +397,10 @@
                     });
                     synth.speak(toSpeak);
 
-                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
-                setTimeout(function(){ 
-                    document.getElementById('img_anati').src="imagens/anati.gif";
-                }, 20000);
+                    document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                    setTimeout(function(){ 
+                        document.getElementById('img_anati').src="imagens/anati.gif";
+                    }, 20000);
                 }else if(txtInput.value == "As máquinas são criativas?" || txtInput.value == "máquinas" 
                          || txtInput.value == "as máquinas são criativas?"){
                     var toSpeak = new SpeechSynthesisUtterance("Neste momento devemos de ver as máquinas como ajuda na execução de processos mais demorados. Não estamos muito perto de sermos criativas, mas não estamos muito longe. Mas acredito que possamos ajudar os humanos a serem mais eficazes nas suas tarefas. Como por exemplo, programar sites, fabricar produtos, construir carros, entre outros.");
@@ -386,10 +414,10 @@
                     });
                     synth.speak(toSpeak);
 
-                      document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
-                setTimeout(function(){ 
-                    document.getElementById('img_anati').src="imagens/anati.gif";
-                }, 20000);
+                    document.getElementById('img_anati').src="imagens/Anati_PFala.gif";
+                    setTimeout(function(){ 
+                        document.getElementById('img_anati').src="imagens/anati.gif";
+                    }, 20000);
                 }
             });
 
